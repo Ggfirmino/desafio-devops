@@ -15,7 +15,7 @@ class APITestCase(unittest.TestCase):
         self.assertTrue(response.status_code, 404)
 
     def test_docs(self):
-        response = self.client.post('/swagger')
+        response = self.client.get('/swagger/')
         self.assertEqual(response.status_code, 200)
 
     def test_unauthorized_access_block(self):
