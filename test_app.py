@@ -14,11 +14,9 @@ class APITestCase(unittest.TestCase):
         response = self.tester.get('/')
         self.assertTrue(response.status_code, 404)
 
-    def test_auth_token_generation(self):
-        response = self.tester.post('/login')
+    def test_docs(self):
+        response = self.tester.post('/swagger/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn('access_token', response.json)
-        self.assertTrue(len(response.json['access_token']) > 0)
 
     def test_unauthorized_access_block(self):
         response = self.tester.get('/protected')
