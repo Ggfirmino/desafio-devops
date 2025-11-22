@@ -11,15 +11,15 @@ class APITestCase(unittest.TestCase):
         cls.client = app.test_client()
 
     def test_home_out(self):
-        response = self.tester.get('/')
+        response = self.client.get('/')
         self.assertTrue(response.status_code, 404)
 
     def test_docs(self):
-        response = self.tester.post('/swagger/')
+        response = self.client.post('/swagger/')
         self.assertEqual(response.status_code, 200)
 
     def test_unauthorized_access_block(self):
-        response = self.tester.get('/protected')
+        response = self.client.get('/protected')
         self.assertEqual(response.status_code, 401)
 
 if __name__ == '__main__':
